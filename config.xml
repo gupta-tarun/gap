@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+  xmlns:gap   = "http://phonegap.com/ns/1.0"
+  id          = "com.phonegap.tarun.youtuber"
+  versionCode = "10"
+  version     = "0.0.1" >
+
+  <name>PhoneGap Youtuber</name>
+
+  <description>
+    Listen to Youtube :).
+  </description>
+
+  <author href="https://build.phonegap.com" email="tarunzweb@gmail.com">
+    Tarun Gupta
+  </author>
+  <!-- Just for android now! -->
+  <gap:platform name="android" />
+
+  <!-- Prefrences for android -->
+  <preference name="orientation" value="portrait" />
+  <preference name="fullscreen" value="true" />
+  <preference name="android-minSdkVersion" value="10" />
+  <preference name="android-installLocation" value="preferExternal" />
+
+  <!-- Icons and splash screens -->
+  <icon src="icon.png" />
+  <gap:splash src="let-the-music-wallpaper-for-computer.png" />
+
+  <!-- Plugins -->
+  <gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
+  
+</widget>

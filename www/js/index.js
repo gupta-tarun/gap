@@ -37,7 +37,6 @@ var googleapi = {
                 $.post('https://accounts.google.com/o/oauth2/token', {
                     code: code[1],
                     client_id: options.client_id,
-                    client_secret: options.client_secret,
                     redirect_uri: options.redirect_uri,
                     grant_type: 'authorization_code'
                 }).done(function(data) {
@@ -56,21 +55,45 @@ var googleapi = {
         return deferred.promise();
     }
 };
+var app = {
+    // Application Constructor
+    initialize: function() {
+        console.log('Initializing App...');
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
 
-$(document).on('deviceready', function() {
-    var $loginButton = $('#login a');
-    var $loginStatus = $('#login p');
+            var $loginButton = $('#login a');
+            var $loginStatus = $('#login p');
+            $('#login1').html('Device is ready Clicked');
+            $loginButton.on('click', function() {
+                console.log('Clicked');
+                googleapi.authorize({
+                    client_id: '531481638166-miu2tpsdvjc6hoh1v7qdenfm016942bj.apps.googleusercontent.com',
+                    client_secret: 'kGPYYAkq0insSDHQK8CCfO1b',
+                    redirect_uri: 'http://localhost',
+                    scope: 'https://www.googleapis.com/auth/analytics.readonly'
+                }).done(function(data) {
+                    $loginStatus.html('Access Token: ' + data.access_token);
+                }).fail(function(data) {
+                    $loginStatus.html(data.error);
+                });
+            });
 
-    $loginButton.on('click', function() {
-        googleapi.authorize({
-            client_id: '531481638166-87sbvajv6m1ek4c9mhg6ib2holna4hdv.apps.googleusercontent.com',
-            client_secret: 'kGPYYAkq0insSDHQK8CCfO1b',
-            redirect_uri: 'http://localhost',
-            scope: 'https://www.googleapis.com/auth/analytics.readonly'
-        }).done(function(data) {
-            $loginStatus.html('Access Token: ' + data.access_token);
-        }).fail(function(data) {
-            $loginStatus.html(data.error);
-        });
-    });
-});
+    }
+};

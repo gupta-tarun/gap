@@ -87,7 +87,7 @@ var app = {
                     client_id: '531481638166-miu2tpsdvjc6hoh1v7qdenfm016942bj.apps.googleusercontent.com',
                     client_secret: 'kGPYYAkq0insSDHQK8CCfO1b',
                     redirect_uri: 'http://localhost',
-                    scope: 'https://www.googleapis.com/auth/analytics.readonly'
+                    scope: 'https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/plus.me'
                 }).done(function(data) {
                     $loginStatus.html('Access Token: ' + data.access_token);
                 }).fail(function(data) {
